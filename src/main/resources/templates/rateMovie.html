@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml" , lang="en">
+<head>
+    <title>Movies rating</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1>MOVIES RATING</h1>
+</header>
+<nav>
+    <ul>
+        <li class="navLi"><a class="nav" href="/">Home page</a></li>
+        <li class="navLi"><a class="nav" href="/list-of-movies">List of movies</a></li>
+        <li class="navLi"><a class="nav" href="/add-movie">Add movie</a></li>
+    </ul>
+</nav>
+<article>
+    <h2>Movie information:</h2>
+    <table class="styled-table" id="table-in-rate">
+        <tr>
+            <td>Name:</td>
+            <td th:text="${movie.name}"></td>
+        </tr>
+        <tr>
+            <td>Year:</td>
+            <td th:text="${movie.year}"></td>
+        </tr>
+        <tr>
+            <td>Length hours:</td>
+            <td th:text="${movie.lengthHours}"></td>
+        </tr>
+        <tr>
+            <td>Length minutes:</td>
+            <td th:text="${movie.lengthMinutes}"></td>
+        </tr>
+        <tr>
+            <td>Rating:</td>
+            <td th:text="${movie.rating}"></td>
+        </tr>
+    </table>
+    <div class="formDiv">
+        <form th:action="@{'/rate-process/' + ${movie.id}}" method="post">
+            <h4>What is your rate for this movie?</h4>
+            1 <input type="radio" name="rateRadioBtn" value="1"></input> <br>
+            2 <input type="radio" name="rateRadioBtn" value="2"></input> <br>
+            3 <input type="radio" name="rateRadioBtn" value="3"></input> <br>
+            4 <input type="radio" name="rateRadioBtn" value="4"></input> <br>
+            5 <input type="radio" name="rateRadioBtn" value="5"></input> <br>
+            6 <input type="radio" name="rateRadioBtn" value="6"></input> <br>
+            7 <input type="radio" name="rateRadioBtn" value="7"></input> <br>
+            8 <input type="radio" name="rateRadioBtn" value="8"></input> <br>
+            9 <input type="radio" name="rateRadioBtn" value="9"></input> <br>
+            10 <input type="radio" name="rateRadioBtn" value="10"></input> <br>
+            <input type ="submit" value="Submit"/>
+        </form>
+    </div>
+</article>
+<footer>Date of the last change: 2022-10-01</footer>
+</body>
+</html>

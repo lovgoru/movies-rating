@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org", lang="en">
+<head>
+  <title>Movies rating</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" th:href="@{/style.css}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+  function searchNames() {
+    var input = document.getElementById('myInput');
+    var filter = input.value.toUpperCase();
+
+    var tds = document.querySelectorAll("#nameTd")
+
+    // Loop through all movie names, and hide those who don't match the search query
+    for (let i = 0; i < tds.length; ++i) {
+      var txtValue = tds[i].textContent || tds[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tds[i].parentElement.style.display = "";
+      } else {
+       tds[i].parentElement.style.display = "none";
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+<header>
+  <h1>MOVIES RATING</h1>
+</header>
+<nav>
+  <ul>
+    <li class="navLi"><a class="nav" href="/">Home page</a></li>
+    <li class="navLi"><a class="nav" href="/list-of-movies">List of movies</a></li>
+    <li class="navLi"><a class="nav" href="/add-movie">Add movie</a></li>
+  </ul>
+</nav>
+<article>
+  <input class="searchInput" type="text" id="myInput" onkeyup="searchNames()" placeholder="Search for names...">
+  <table id="table" class="styled-table">
+    <tr class="firstRow">
+      <td class="cellFirstRow">&#9733;</td>
+      <td class="cellFirstRow">Name</td>
+      <td class="cellFirstRow">Year</td>
+      <td class="cellFirstRow">Hours</td>
+      <td class="cellFirstRow">Minutes</td>
+      <td class="cellFirstRow">Rating</td>
+    </tr>
+    <tr class="rowOders" th:each="movie: ${movies}">
+      <td id="nameTd" class="cellOders" th:text="${movie.name}"></td>
+      <td class="cellOders" th:text="${movie.year}"></td>
+      <td class="cellOders" th:text="${movie.lengthHours}"></td>
+      <td class="cellOders" th:text="${movie.lengthMinutes}"></td>
+      <td class="cellOders" th:text="${movie.rating}"></td>
+      <td>
+        <a th:href="@{'/list-of-movies/rate/'+${movie.id}}">Rate</a> <br>
+        <a th:href="@{'/list-of-movies/change/'+${movie.id}}">Change</a>
+      </td>
+    </tr>
+  </table>
+
+</article>
+<footer>Date of the last change: 2022-10-01</footer>
+</body>
+</html>

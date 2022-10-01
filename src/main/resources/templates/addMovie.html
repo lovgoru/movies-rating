@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org", lang="en">
+<head>
+    <title>Movies rating</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:inline="javascript">
+        function findPotentialNames(name, listNames){
+            const potentials = [];
+
+            for(let i = 0; i < listNames.length; ++i){
+
+                if(name.toLowerCase() === listNames[i].toLowerCase()){
+                    potentials.push(listNames[i]);
+                    break;
+                }
+
+                if(name.toLowerCase() === abbreviation(listNames[i]).toLowerCase()){
+                    potentials.push(listNames[i]);
+                    break;
+                }
+
+                if(abbreviation(name).toLowerCase() === listNames[i].toLowerCase()){
+                    potentials.push(listNames[i]);
+                    break;
+                }
+
+                if(name.toLowerCase() === removeThe(listNames[i].toLowerCase())){
+                    potentials.push(listNames[i]);;
+                    break;
+                }
+
+                if(removeThe(name.toLowerCase()) === listNames[i].toLowerCase()){
+                    potentials.push(listNames[i]);
+                    break;
+                }
+
+                if(removeSpace(name.toLowerCase()) === removeSpace(listNames[i].toLowerCase())){
+                    potentials.push(listNames[i]);
+                    break;
+                }
+
+
+            }
+
+            return potentials;
+        }
+
+        function abbreviation(name){
+            const words = name.split(" ");
+            let abbr = "";
+            for(let i = 0; i < words.length; ++i){
+                abbr += (words[i]).charAt(0);
+            }
+            return abbr;
+        }
+
+        function removeThe(name){
+            name = name.replace(/the /g, "");
+            return name;
+        }
+
+        function removeSpace(name){
+            name = name.replace(/ /g, "");
+            return name;
+        }
+
+        function showPotentialNames(){
+            let inputName = document.getElementById('nameInput').value;
+            const shownList= document.getElementById("shownList");
+
+            /*<![CDATA[*/
+
+            var movieNames = /*[[${movieNames}]]*/ "Test";
+
+            /*]]>*/
+
+            shownList.innerHTML = "";
+
+           const potentialNames = findPotentialNames(inputName, movieNames);
+
+           if(potentialNames.length === 0){
+                shownList.innerHTML += "<li>There isn't a movie with entered name</li>";
+            }
+
+           if(potentialNames.length > 0){
+                shownList.innerHTML += "<li>Does your movie matches any of the following movies?</li>";
+            }
+
+           for(let i = 0; i < potentialNames.length; ++i){
+                shownList.innerHTML += "<li>" + potentialNames[i] + " " + "<a href='/list-of-movies'>Back to list</a></li>";
+           }
+
+        }
+
+        function isValidForm(){
+            let inputName = document.getElementById('nameInput').value;
+
+            /*<![CDATA[*/
+
+            var movieNames = /*[[${movieNames}]]*/ "Test";
+
+            /*]]>*/
+
+            if(movieNames.includes(inputName) == true){
+                alert("Movie with this name is already in the list");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+<header>
+    <h1>MOVIES RATING</h1>
+</header>
+<nav>
+    <ul>
+        <li class="navLi"><a class="nav" href="/">Home page</a></li>
+        <li class="navLi"><a class="nav" href="/list-of-movies">List of movies</a></li>
+        <li class="navLi"><a class="nav" href="/add-movie">Add movie</a></li>
+    </ul>
+</nav>
+<article>
+    <ul class="listPotentials" id="shownList">
+
+    </ul>
+    <div class="formDiv">
+        <form action ="/add-process" method ="post" onsubmit = "return isValidForm()">
+            <h2>Add movie data:</h2> <br>
+            <label>Name:</label> <br>
+            <input id="nameInput" type ="text"  th:value="${name}" name="name" required> <br>
+            <button class="inputBtn" onclick="showPotentialNames();"
+                    title="Check if your movie name matches any of already saved" type="button">Check</button> <br> <br>
+            <label>Year:</label> <br>
+            <input type ="number" th:value="${year}" name="year" min="1900" max="2040"> <br> <br>
+            <label>Length:</label> <br>
+            <label>Hours:</label> <br>
+            <input type ="number" th:value="${lengthHours}" name="lengthHours" min="0" max="20"> <br>
+            <label>Minutes:</label> <br>
+            <input type ="number" th:value="${lengthMinutes}" name="lengthMinutes" min="0" max="59"> <br> <br>
+            <input class="inputBtn" type ="submit" value="Add movie"/>
+        </form>
+    </div>
+</article>
+<footer>Date of the last change: 2022-10-01</footer>
+
+</body>
+</html>

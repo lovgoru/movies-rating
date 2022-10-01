@@ -1,0 +1,145 @@
+table {
+  counter-reset: rowNumber;
+}
+
+.rowOders::before {
+  display: table-cell;
+  counter-increment: rowNumber;
+  content: counter(rowNumber) ".";
+  padding-right: 0.3em;
+  text-align: left;
+  padding: 12px 15px;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 125%;
+    background-color: #FDFD96;
+}
+
+header{
+    background-image: url('background_header.jpg');
+    background-size: 100%;
+    color: white;
+    text-align: center;
+    padding: 75px;
+    font-size: 5vw;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.navLi{
+    float: left;
+}
+
+.nav{
+    display: block;
+    background-color: #c5c5c5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-style: solid;
+    padding : 10px;
+    border-radius: 10px 20px;
+}
+
+li a:hover{
+    background-color: #ace063;
+}
+
+article{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 150px;
+}
+
+footer{
+  background-color: #c5c5c5;
+  text-align: center;
+  color: white;
+  margin-top: 300px;
+}
+
+.formDiv{
+    border: 5px solid #c5c5c5;
+    border-radius: 25px;
+    padding: 25px;
+    width: 50%;
+    margin: auto;
+}
+
+form{
+    width: 60%;
+    margin: auto;
+}
+
+input{
+    border-radius: 5px;
+}
+
+.inputBtn{
+    border-radius: 5px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #c5c5c5;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.searchInput{
+    display: block;
+    width: 40%;
+    margin: auto;
+}
+
+.listPotentials{
+    margin-bottom: 50px;
+}
+
+#table-in-rate{
+    width: 50%;
+}
+
+a, a:focus, a:active {
+      text-decoration: none;
+      color: blue;
+ }

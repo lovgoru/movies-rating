@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org", lang="en">
+<head>
+    <title>Movies rating</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1>MOVIES RATING</h1>
+</header>
+<nav>
+    <ul>
+        <li class="navLi"><a class="nav" href="/">Home page</a></li>
+        <li class="navLi"><a class="nav" href="/list-of-movies">List of movies</a></li>
+        <li class="navLi"><a class="nav" href="/add-movie">Add movie</a></li>
+    </ul>
+</nav>
+<article>
+    <div class="formDiv">
+        <form th:action="@{'/change-process/' + ${movie.id}}" method ="post">
+            <h2>Add movie data:</h2> <br>
+            <label>Name:</label> <br>
+            <input type ="text"  th:placeholder="${movie.name}" th:value="${name}" name="name"> <br> <br>
+            <label>Year:</label> <br>
+            <input type ="number" th:placeholder="${movie.year}" th:value="${year}" name="year" min="1900" max="2040"> <br> <br>
+            <label>Length:</label> <br>
+            <label>Hours:</label> <br>
+            <input type ="number" th:placeholder="${movie.lengthHours}" th:value="${lengthHours}" name="lengthHours"
+                   min="0" max="20"> <br>
+            <label>Minutes:</label> <br>
+            <input type ="number" th:placeholder="${movie.lengthMinutes}" th:value="${lengthMinutes}" name="lengthMinutes"
+                   min="0" max="59"> <br> <br>
+            <input type ="submit" value="Submit"/>
+        </form>
+    </div>
+</article>
+<footer>Date of the last change: 2022-10-01</footer>
+</body>
+</html>

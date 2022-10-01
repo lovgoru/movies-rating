@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org", lang="en">
+<head>
+    <title>Movies rating</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1>MOVIES RATING</h1>
+</header>
+<nav>
+    <ul>
+        <li class="navLi"><a class="nav" href="/">Home page</a></li>
+        <li class="navLi"><a class="nav" href="/list-of-movies">List of movies</a></li>
+        <li class="navLi"><a class="nav" href="/add-movie">Add movie</a></li>
+    </ul>
+</nav>
+<article>
+    <h1>About website</h1> <br> <br>
+    <p>
+        This is a website designed for rating movies. Currently, you are in the <i>Home page</i> section.
+    </p> <br>
+    <p>
+        In the section <i>List of movies</i> you can see a list of all movies that are saved before. Except the movie
+        basic information, there you can find a movie rating. Also, it is a place where you can rate a movie (from 1 to
+        10) or change basic information about any movie.
+    </p> <br>
+    <p>
+        In the section <i>Add movie</i> you can add movie that isn't already on a list of movies. When you enter a name,
+        you can check if there is any movie name already saved that is similar. Other input fields, except the name
+        field, aren't required to be filled.
+    </p> <br>
+</article>
+<footer>Date of the last change: 2022-10-01</footer>
+</body>
+</html>
